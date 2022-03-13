@@ -31,6 +31,7 @@ services:
       - ./src/:/var/www/html
 
   db:
+    env_file: ./.env  
     build:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
@@ -39,8 +40,8 @@ services:
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       TZ: 'Asia/Tokyo'
     volumes:
       - mysql-volume:/var/lib/mysql
